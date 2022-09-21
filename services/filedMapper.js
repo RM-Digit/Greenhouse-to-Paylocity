@@ -1,5 +1,3 @@
-const jsonData = require("../data.json");
-
 const company = {
   4005927002: 94951, //  National Center for Hebrew Language,
   4005925002: 94952, //  Hebrew Language Academy Charter School,
