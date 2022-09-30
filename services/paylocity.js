@@ -30,7 +30,7 @@ const getToken = async () => {
 };
 
 const createEmployee = async (token, companyId, data) => {
-  const post_URL = (cId) => `${URL_ROOT}/api/v2/companies/${cId}/employees`;
+  const post_URL = (cId) => `${URL_ROOT}/api/v1/companies/${cId}/onboarding/employees`;
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
