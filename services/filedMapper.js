@@ -131,10 +131,11 @@ const taxFields = {
 const GreenHouseToPaylocity = (greenhouseData) => {
   const { candidate, offer } = greenhouseData;
   if (!candidate) return;
+  const userName = candidate.first_name + candidate.last_name;
   var user = {
     firstName: candidate.first_name,
     lastName: candidate.last_name,
-    userName: candidate.first_name + candidate.last_name,
+    userName: userName.replace(/\s+/g, "").replace(/[^a-zA-Z0-9 ]/g, ""),
     personalEmailAddress: candidate.email_addresses.find((_) => _.type === "personal")?.value || "",
   };
 

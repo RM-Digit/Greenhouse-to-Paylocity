@@ -24,12 +24,8 @@ app.post("/hired", async (req, res) => {
   const token = await Paylocity.getToken();
   const rquestData = mapper.GreenHouseToPaylocity(application);
   const offices = application.jobs[0].offices?.map((_) => _.id) || [];
-
   const companyIds = offices.map((id) => mapper.company[id]);
-  const response = await Promise.all(
-    companyIds.map((id) => Paylocity.createEmployee(token, id, rquestData))
-  );
-  console.log("response", response);
+  await Promise.all(companyIds.map((id) => Paylocity.createEmployee(token, id, rquestData)));
   return res.status(200).json({ token: token });
 });
 

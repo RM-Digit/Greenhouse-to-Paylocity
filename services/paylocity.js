@@ -38,6 +38,7 @@ const createEmployee = async (token, companyId, data) => {
     const create = await axios.post(post_URL(companyId), data, config);
     return create.data;
   } catch (error) {
+    console.log("err", error.response.data);
     return error.response.data;
   }
 };
