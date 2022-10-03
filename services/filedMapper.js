@@ -135,7 +135,11 @@ const GreenHouseToPaylocity = (greenhouseData) => {
   var user = {
     firstName: candidate.first_name,
     lastName: candidate.last_name,
-    userName: userName.replace(/\s+/g, "").replace(/[^a-zA-Z0-9 ]/g, ""),
+    userName:
+      userName
+        .replace(/\s+/g, "")
+        .replace(/[^a-zA-Z0-9 ]/g, "")
+        .slice(0, 6) + Date.now(),
     personalEmailAddress: candidate.email_addresses.find((_) => _.type === "personal")?.value || "",
   };
 
