@@ -144,13 +144,22 @@ const GreenHouseToPaylocity = (greenhouseData) => {
   };
 
   if (offer)
-    user = {
-      ...user,
-      salary: Number(
-        offer.custom_fields["salary_offer_1544809907.2708142"]?.value.amount || "0.00"
-      ),
-      hireDate: offer.starts_at,
-    };
+    payType = offer.custom_fields.employment_type.value === "Part-time" ? "Hourly" : "Salary";
+  user = {
+    ...user,
+    employmentType: employeeType[offer.custom_fields.employment_type.value],
+    payType: payType,
+    hireDate: offer.starts_at,
+  };
+
+  if (offer.custom_fields["salary_offer_1544809907.2708142"]) {
+    user.salary = Number(offer.custom_fields["salary_offer_1544809907.2708142"].value.amount);
+  }
+
+  if (offer.custom_fields.hourly_wage) {
+    user.baseRate = offer.custom_fields.hourly_wage.value.amount;
+  }
+
   return user;
 };
 
